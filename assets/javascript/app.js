@@ -1,7 +1,7 @@
-//onload function displays a play button, which class question 1 from the game object
+//onload function displays a play button, which calls question 1 from the game object
 window.onload = function(){
 	$('#display').html('<span id="play">play</span>')
-	$('#play').click(game.Q1);
+	$('#play').click(game.start);
 
 }
 
@@ -18,38 +18,51 @@ var b;
 var c; 
 var d;
 
+
 //this is the game object, which controls the timer as well as the trivia questions.
 var game ={
 
 		time:20,
 		
 
-	//this function calls the function decrement every second.
-	//it also asks the first question and links the question, asnwers and timer to the user Interface.
-	Q1: function(){
+	//this function calls the function Q1 every second.
+	start: function(){
 		if (!clockRunning) {
         clockRunning=true;
-        counter=setInterval(game.decrement,1000);
+        counter=setInterval(game.Q1, 1000);
       }
 
-      question = "Who wrote the write of spring?"
+      
+
+	},
+	//this function subtracts game.time by one every time it is called and displays the current game.time in the UI.
+	//it also asks the first multiple choice question and links the question, asnwers and timer to the user Interface.
+	Q1: function(){
+		//this decrements game.time by 1 every second
+		game.time--;
+
+
+		//console.log should print only when clicked, but it is printing every time the function is called by start.
+		if($('.a').click())
+      	{
+      	console.log("this is working");
+	     }
+
+	    //this is printing out on the user interface. 
+		question = "Who wrote the Rite of Spring?"
       a= "Stravinsky";
       b= "Bach";
       c= "Mozart";
       d= "Brahms";
       game.interface();
 
-      if($('#a').click())
-      	{
-      	console.log("this is working");
+      	
+      	//if the timer hits 0, the stop function is called, and answer 1 is called.
+	     if(game.time===0){
+	     	game.stop();
+	     	unanswered++;
+	     	game.answer1();
 	     }
-
-	},
-	//this function subtracts game.time by one every time it is called and displays the current game.time in the UI.
-	decrement: function(){
-		game.time--;
-
-		$('#timer').html(game.time);		
 	},
 
 	stop: function(){
@@ -66,17 +79,41 @@ var game ={
 	
 	//this function is the userInterface that displays when the user is answering questions.
 	interface: function(){
-		var countDown = "<h1>" + game.decrement + "</h1>" 
+		
 
 		var html= 
-				  "<h1>" + question + "</h1>" +
-				  "<span class = 'a'>" + a + "</span>"+"<br/>"+
-				  "<span class = 'b'>" + b + "</span>"+"<br/>"+
-				  "<span class = 'c'>" + c + "</span>"+"<br/>"+
-				  "<span class = 'd'>" + d + "</span>"
+				  "<h1 class = 'question'>" + question + "</h1>" +
+				  "<div class = 'a'>" + a + "</div>"+
+				  "<div class = 'b'>" + b + "</div>"+
+				  "<div class = 'c'>" + c + "</div>"+
+				  "<div class = 'd'>" + d + "</div>"+
+				  "<h1 class = 'clock'>" + game.time + "</h1>" 
 
 		$('#display').html(html);		  
-	},			 
+	},			
+
+	//this function displays the correct answer for each question
+	answer1: function(){
+			//if the user guesses the correct answer display the word "correct" and a picture of the composer.
+				if(correct===1){
+					var answer=
+					 "<h1>" + "Correct, Igor Stravinsky wrote the Rite of Spring" + "</h1>" + "<br/>"+
+					 "<img src='assets/images/stravinsky.jpg'/>"
+
+				$('#display').html(answer);
+				}
+			//if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
+				if(incorrect===1 || unanswered===1){
+					var answer=
+					 "<h1 class='wrong'>" + "Wrong, Igor Stravinsky wrote the Rite of Spring" + "</h1>" + "<br/>"+
+					 "<img src='assets/images/stravinsky.jpg'/>"
+
+				$('#display').html(answer);	 
+				}
+
+	}, 
+
+
 	//this function displays the user's results when the game is over and gives them the option to play again.
 	result: function(){ 
 
