@@ -34,7 +34,7 @@
 		margin-top:150px;
 }
 
-.a{
+#a{
 		display:inline-block;
 		text-align:center;
 		margin-top:30px;
@@ -45,7 +45,7 @@
 		margin-right:60px;
 }
 
-.b{
+#b{
 		display:inline-block;
 		text-align:center;
 		margin-top:30px;
@@ -56,7 +56,7 @@
 		margin-right:60px;
 }
 
-.c{
+#c{
 		display:inline-block;
 		text-align:center;
 		margin-top:30px;
@@ -67,7 +67,7 @@
 		margin-right:60px;
 }
 
-.d{
+#d{
 		display:inline-block;
 		text-align:center;
 		margin-top:30px;
