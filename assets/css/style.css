@@ -89,3 +89,14 @@
 	text-align:center;
 }
 
+#resetGame{
+		display:inline-block;
+		text-align:center;
+		margin-top:30px;
+		border:black 2px solid;
+		width:100px;
+		border-radius: 10px;
+		margin-left:70px;
+		margin-right:60px;
+
+}

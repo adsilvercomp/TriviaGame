@@ -18,6 +18,7 @@ var b;
 var c;
 var d;
 var userGuess;
+var unansweredB=false;
 
 
 
@@ -26,7 +27,7 @@ var userGuess;
 //this is the game object, which controls the timer as well as the trivia questions.
 var game = {
     time: 20,
-    aTime: 10,
+    aTime: 5,
 
     //this function calls the function Q1 every second.
     start: function() {
@@ -35,9 +36,11 @@ var game = {
             counter = setInterval(game.Q1, 1000);
         }
 
-
-
     },
+
+
+    
+
     //this function subtracts game.time by one (20 times) every time it is called and displays the current game.time in the UI.
     //it also asks the first multiple choice question and links the question, asnwers and timer to the user Interface.
     //it then calls answer1 every second.
@@ -46,38 +49,33 @@ var game = {
         game.time--;
 
         $('#display').on("click", "#a", function() {
-            userGuess = true;
-            correct++;
             game.stop();
+            userGuess = true;
             counter = setInterval(game.answer1, 1000);
         });
 
         $('#display').on("click", "#b", function() {
-            userGuess = false;
-            incorrect++;
             game.stop();
+            userGuess = false;
             counter = setInterval(game.answer1, 1000);
         });
 
         $('#display').on("click", "#c", function() {
-            userGuess = false;
-            incorrect++;
             game.stop();
+            userGuess = false;
             counter = setInterval(game.answer1, 1000);
         });
 
         $('#display').on("click", "#d", function() {
-            userGuess = false;
-            incorrect++;
             game.stop();
+            userGuess = false;
             counter = setInterval(game.answer1, 1000);
         });
 
         //if the timer hits 0, the stop function is called, and answer 1 is called every second.
         if (game.time === 0) {
-            userGuess = false;
             game.stop();
-            unanswered++;
+            unansweredB=true;
             counter = setInterval(game.answer1, 1000);
         }
 
@@ -117,11 +115,41 @@ var game = {
             $('#display').html(answer);
         }
 
-        if (game.aTime === 0) {
+        if (unansweredB === true) {
+            var answer =
+                "<h1 class='wrong'>" + "Igor Stravinsky wrote the Rite of Spring" + "</h1>" + "<br/>" +
+                "<img src='assets/images/stravinsky.jpg'/>"
+
+            $('#display').html(answer);
+        }
+
+        if ((game.aTime === 0)&&(unansweredB===true)&&(userGuess!==true)&&(userGuess!==false)) {
+            unanswered++;
+            console.log("unanswered");
             game.stop();
             game.timeReset();
             counter = setInterval(game.Q2, 1000);
         }
+
+       if ((game.aTime === 0)&&(userGuess===true)) {
+            correct++;
+            console.log("correct");
+            game.stop();
+            game.timeReset();
+            counter = setInterval(game.Q2, 1000);
+        }
+
+         if ((game.aTime === 0)&&(userGuess===false)) {
+            incorrect++;
+            console.log("incorrect");
+            game.stop();
+            game.timeReset();
+            counter = setInterval(game.Q2, 1000);
+        }
+
+        
+
+
 
     },
 
@@ -130,38 +158,33 @@ var game = {
         game.time--;
 
         $('#display').on("click", "#a", function() {
-            userGuess = false;
-            incorrect++;
             game.stop();
+            userGuess = false;
             counter = setInterval(game.answer2, 1000);
         });
 
         $('#display').on("click", "#b", function() {
-            userGuess = false;
-            incorrect++;
             game.stop();
+            userGuess = false;
             counter = setInterval(game.answer2, 1000);
         });
 
         $('#display').on("click", "#c", function() {
-            userGuess = true;
-            correct++;
             game.stop();
+            userGuess = true;
             counter = setInterval(game.answer2, 1000);
         });
 
         $('#display').on("click", "#d", function() {
-            userGuess = false;
-            incorrect++;
             game.stop();
+            userGuess = false;
             counter = setInterval(game.answer2, 1000);
         });
 
         //if the timer hits 0, the stop function is called, and answer 1 is called every second.
         if (game.time === 0) {
-            userGuess = false;
             game.stop();
-            unanswered++;
+            unansweredB=true;
             counter = setInterval(game.answer2, 1000);
         }
 
@@ -178,11 +201,6 @@ var game = {
 
 
     answer2: function() {
-
-        game.aTime--;
-
-        // if user is right, increment correct, display it to the user
-        // else incorrect++ display 
 
 
         //if the user guesses the correct answer display the word "correct" and a picture of the composer.
@@ -205,12 +223,40 @@ var game = {
             $('#display').html(answer);
         }
 
-        if (game.aTime === 0) {
+        if (unansweredB === true) {
+            var answer =
+                "<h1 class='wrong'>" + "Mozart wrote the Magic Flute" + "</h1>" + "<br/>" +
+                "<img src='assets/images/mozart.jpg'/>"
+
+            $('#display').html(answer);
+        }
+
+        if ((game.aTime === 0)&&(unansweredB===true)&&(userGuess!==true)&&(userGuess!==false)){
+            unanswered++;
+            console.log("unanswered");
             game.stop();
             game.timeReset();
             counter = setInterval(game.Q3, 1000);
         }
 
+
+        if ((game.aTime === 0)&&(userGuess===true)) {
+            correct++;
+            console.log("correct");
+            game.stop();
+            game.timeReset();
+            counter = setInterval(game.Q3, 1000);
+        }
+
+         if ((game.aTime === 0)&&(userGuess===false)) {
+            incorrect++;
+            console.log("incorrect");
+            game.stop();
+            game.timeReset();
+            counter = setInterval(game.Q3, 1000);
+        }
+
+        
     },
 
     Q3: function() {
@@ -218,38 +264,33 @@ var game = {
         game.time--;
 
         $('#display').on("click", "#a", function() {
-            userGuess = false;
-            incorrect++;
             game.stop();
+            userGuess = false;
             counter = setInterval(game.answer3, 1000);
         });
 
         $('#display').on("click", "#b", function() {
-            userGuess = true;
-            correct++;
             game.stop();
+            userGuess = true;
             counter = setInterval(game.answer3, 1000);
         });
 
         $('#display').on("click", "#c", function() {
-            userGuess = false;
-            incorrect++;
             game.stop();
+            userGuess = false;
             counter = setInterval(game.answer3, 1000);
         });
 
         $('#display').on("click", "#d", function() {
-            userGuess = false;
-            incorrect++;
             game.stop();
+            userGuess = false;
             counter = setInterval(game.answer3, 1000);
         });
 
         //if the timer hits 0, the stop function is called, and answer 1 is called every second.
         if (game.time === 0) {
-            userGuess = false;
             game.stop();
-            unanswered++;
+            unansweredB=true;
             counter = setInterval(game.answer3, 1000);
         }
 
@@ -273,7 +314,7 @@ var game = {
         //if the user guesses the correct answer display the word "correct" and a picture of the composer.
         if (userGuess === true) {
             var answer =
-                "<h1>" + "Correct, Beethoven wrote the Moonligh Sonata" + "</h1>" + "<br/>" +
+                "<h1>" + "Correct, Beethoven wrote the Moonlight Sonata" + "</h1>" + "<br/>" +
                 "<img src='assets/images/beethoven.jpg'/>"
 
             $('#display').html(answer);
@@ -287,11 +328,40 @@ var game = {
             $('#display').html(answer);
         }
 
-        if (game.aTime === 0) {
+        if (unansweredB === true) {
+            var answer =
+                "<h1 class='wrong'>" + "Beethoven wrote the Moonlight Sonata" + "</h1>" + "<br/>" +
+                "<img src='assets/images/beethoven.jpg'/>"
+
+            $('#display').html(answer);
+        }
+
+
+        if ((game.aTime === 0)&&(unansweredB===true)&&(userGuess!==true)&&(userGuess!==false)) {
+            unanswered++;
+            console.log("unanswered");
             game.stop();
             game.timeReset();
             counter = setInterval(game.Q4, 1000);
         }
+
+        
+         if ((game.aTime === 0)&&(userGuess===true)) {
+            correct++;
+            console.log("correct");
+            game.stop();
+            game.timeReset();
+            counter = setInterval(game.Q4, 1000);
+        }
+
+         if ((game.aTime === 0)&&(userGuess===false)) {
+            incorrect++;
+            console.log("incorrect");
+            game.stop();
+            game.timeReset();
+            counter = setInterval(game.Q4, 1000);
+        }
+
 
     },
 
@@ -301,37 +371,32 @@ var game = {
 
         $('#display').on("click", "#a", function() {
             userGuess = false;
-            incorrect++;
             game.stop();
             counter = setInterval(game.answer4, 1000);
         });
 
         $('#display').on("click", "#b", function() {
             userGuess =false;
-            incorrect++;
             game.stop();
             counter = setInterval(game.answer4, 1000);
         });
 
         $('#display').on("click", "#c", function() {
             userGuess = false;
-            incorrect++;
             game.stop();
             counter = setInterval(game.answer4, 1000);
         });
 
         $('#display').on("click", "#d", function() {
             userGuess = true;
-            correct++;
             game.stop();
             counter = setInterval(game.answer4, 1000);
         });
 
         //if the timer hits 0, the stop function is called, and answer 1 is called every second.
         if (game.time === 0) {
-            userGuess = false;
             game.stop();
-            unanswered++;
+            unansweredB=true;
             counter = setInterval(game.answer4, 1000);
         }
 
@@ -369,11 +434,39 @@ var game = {
             $('#display').html(answer);
         }
 
-        if (game.aTime === 0) {
+        if (unansweredB === true) {
+            var answer =
+                "<h1 class='wrong'>" + "Bach wrote the Goldberg Variations" + "</h1>" + "<br/>" +
+                "<img src='assets/images/bach.jpg'/>"
+
+            $('#display').html(answer);
+        }
+
+        if ((game.aTime === 0)&&(unansweredB===true)&&(userGuess!==true)&&(userGuess!==false)) {
+            unanswered++;
+            console.log("unanswered");
             game.stop();
             game.timeReset();
             counter = setInterval(game.Q5, 1000);
         }
+
+       
+         if ((game.aTime === 0)&&(userGuess===true)) {
+            correct++;
+            console.log("correct");
+            game.stop();
+            game.timeReset();
+            counter = setInterval(game.Q5, 1000);
+        }
+
+         if ((game.aTime === 0)&&(userGuess===false)) {
+            incorrect++;
+            console.log("incorrect");
+            game.stop();
+            game.timeReset();
+            counter = setInterval(game.Q5, 1000);
+        }
+
 
     },
 
@@ -383,37 +476,32 @@ var game = {
 
         $('#display').on("click", "#a", function() {
             userGuess = false;
-            incorrect++;
             game.stop();
             counter = setInterval(game.answer5, 1000);
         });
 
         $('#display').on("click", "#b", function() {
             userGuess = false;
-            incorrect++;
             game.stop();
             counter = setInterval(game.answer5, 1000);
         });
 
         $('#display').on("click", "#c", function() {
             userGuess = true;
-            correct++;
             game.stop();
             counter = setInterval(game.answer5, 1000);
         });
 
         $('#display').on("click", "#d", function() {
             userGuess = false;
-            incorrect++;
             game.stop();
             counter = setInterval(game.answer5, 1000);
         });
 
         //if the timer hits 0, the stop function is called, and answer 1 is called every second.
         if (game.time === 0) {
-            userGuess = false;
             game.stop();
-            unanswered++;
+            unansweredB=true;
             counter = setInterval(game.answer5, 1000);
         }
 
@@ -451,7 +539,33 @@ var game = {
             $('#display').html(answer);
         }
 
-        if (game.aTime === 0) {
+        if (unansweredB === true) {
+            var answer =
+                "<h1 class='wrong'>" + "Brahms wrote the German Requiem" + "</h1>" + "<br/>" +
+                "<img src='assets/images/brahms.jpg'/>"
+
+            $('#display').html(answer);
+        }
+
+        if ((game.aTime === 0)&&(unansweredB===true)&&(userGuess!==true)&&(userGuess!==false)) {
+            unanswered++;
+            console.log("unanswered");
+            game.stop();
+            game.timeReset();
+            game.result();
+        }
+        
+         if ((game.aTime === 0)&&(userGuess===true)) {
+            correct++;
+            console.log("correct");
+            game.stop();
+            game.timeReset();
+            game.result();
+        }
+
+         if ((game.aTime === 0)&&(userGuess===false)) {
+            incorrect++;
+            console.log("incorrect");
             game.stop();
             game.timeReset();
             game.result();
@@ -477,14 +591,18 @@ var game = {
 
     //this function displays the user's results when the game is over and gives them the option to play again.
     result: function() {
-
         var end =
             "<h1>" + "Correct:" + correct + "</h1>" +
             "<h1>" + "Incorrect:" + incorrect + "</h1>" +
-            "<h1>" + "Uanswered:" + unanswered + "</h1>" +
+            "<h1>" + "Unaswered:" + unanswered + "</h1>" +
             "<div id='resetGame'>" + "Play Again" + "</div>"
 
         $('#display').html(end);
+
+        $('#display').on("click", '#resetGame', function(){
+            
+            counter = setInterval(game.Q1, 1000);
+        });
     },
 
     stop: function() {
@@ -498,14 +616,10 @@ var game = {
         game.aTime = 10;
     },
 
-
-
+   
     //this function resets the game.
-    reset2: function() {
-        $('#display').on("click", "#resetGame", function() {
-            game.start();
-        });
-    }
+    
+    
 }
 
 
