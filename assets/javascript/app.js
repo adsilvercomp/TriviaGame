@@ -18,7 +18,7 @@ var b;
 var c;
 var d;
 var userGuess;
-var unansweredB=false;
+var unansweredB = false;
 
 
 
@@ -39,7 +39,7 @@ var game = {
     },
 
 
-    
+
 
     //this function subtracts game.time by one (20 times) every time it is called and displays the current game.time in the UI.
     //it also asks the first multiple choice question and links the question, asnwers and timer to the user Interface.
@@ -75,8 +75,11 @@ var game = {
         //if the timer hits 0, the stop function is called, and answer 1 is called every second.
         if (game.time === 0) {
             game.stop();
-            unansweredB=true;
+            userGuess;
+            unansweredB = true;
             counter = setInterval(game.answer1, 1000);
+        } else {
+            unansweredB = false;
         }
 
 
@@ -93,27 +96,12 @@ var game = {
 
 
 
-    //this function displays the correct answer for each question
+    //this function displays the correct answer for question one and stores the userGuess as either correct, incorrect, or unanswered. 
     answer1: function() {
+
 
         //this decrements game.aTime by 1 every second
         game.aTime--;
-        //if the user guesses the correct answer display the word "correct" and a picture of the composer.
-        if (userGuess === true) {
-            var answer =
-                "<h1>" + "Correct, Igor Stravinsky wrote the Rite of Spring" + "</h1>" + "<br/>" +
-                "<img src='assets/images/stravinsky.jpg'/>"
-
-            $('#display').html(answer);
-        }
-        //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
-        if (userGuess === false) {
-            var answer =
-                "<h1 class='wrong'>" + "Wrong, Igor Stravinsky wrote the Rite of Spring" + "</h1>" + "<br/>" +
-                "<img src='assets/images/stravinsky.jpg'/>"
-
-            $('#display').html(answer);
-        }
 
         if (unansweredB === true) {
             var answer =
@@ -121,25 +109,46 @@ var game = {
                 "<img src='assets/images/stravinsky.jpg'/>"
 
             $('#display').html(answer);
-        }
+        } else
 
-        if ((game.aTime === 0)&&(unansweredB===true)&&(userGuess!==true)&&(userGuess!==false)) {
+            //if the user guesses the correct answer display the word "correct" and a picture of the composer.
+            if (userGuess === true) {
+                var answer =
+                    "<h1>" + "Correct, Igor Stravinsky wrote the Rite of Spring" + "</h1>" + "<br/>" +
+                    "<img src='assets/images/stravinsky.jpg'/>"
+
+                $('#display').html(answer);
+            } else
+                //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
+                if (userGuess === false) {
+                    var answer =
+                        "<h1 class='wrong'>" + "Wrong, Igor Stravinsky wrote the Rite of Spring" + "</h1>" + "<br/>" +
+                        "<img src='assets/images/stravinsky.jpg'/>"
+
+                    $('#display').html(answer);
+                }
+
+
+
+
+        if ((game.aTime === 0) && (unansweredB === true)) {
             unanswered++;
             console.log("unanswered");
             game.stop();
             game.timeReset();
             counter = setInterval(game.Q2, 1000);
-        }
+        } else
 
-       if ((game.aTime === 0)&&(userGuess===true)) {
+        if ((game.aTime === 0) && (userGuess === true)) {
             correct++;
             console.log("correct");
             game.stop();
             game.timeReset();
             counter = setInterval(game.Q2, 1000);
-        }
+        } else
 
-         if ((game.aTime === 0)&&(userGuess===false)) {
+        if ((game.aTime === 0) && (userGuess === false)) {
+
             incorrect++;
             console.log("incorrect");
             game.stop();
@@ -147,11 +156,9 @@ var game = {
             counter = setInterval(game.Q2, 1000);
         }
 
-        
-
-
 
     },
+
 
     Q2: function() {
         //this decrements game.time by 1 every second
@@ -184,8 +191,11 @@ var game = {
         //if the timer hits 0, the stop function is called, and answer 1 is called every second.
         if (game.time === 0) {
             game.stop();
-            unansweredB=true;
+            userGuess;
+            unansweredB = true;
             counter = setInterval(game.answer2, 1000);
+        } else {
+            unansweredB = false;
         }
 
 
@@ -207,21 +217,6 @@ var game = {
         // if (userGuess === correct) {
         game.aTime--;
         //if the user guesses the correct answer display the word "correct" and a picture of the composer.
-        if (userGuess === true) {
-            var answer =
-                "<h1>" + "Correct, Mozart wrote the Magic Flute" + "</h1>" + "<br/>" +
-                "<img src='assets/images/mozart.jpg'/>"
-
-            $('#display').html(answer);
-        }
-        //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
-        if (userGuess === false) {
-            var answer =
-                "<h1 class='wrong'>" + "Wrong, Mozart wrote the Magic Flute" + "</h1>" + "<br/>" +
-                "<img src='assets/images/mozart.jpg'/>"
-
-            $('#display').html(answer);
-        }
 
         if (unansweredB === true) {
             var answer =
@@ -229,26 +224,45 @@ var game = {
                 "<img src='assets/images/mozart.jpg'/>"
 
             $('#display').html(answer);
-        }
+        } else
 
-        if ((game.aTime === 0)&&(unansweredB===true)&&(userGuess!==true)&&(userGuess!==false)){
+        if (userGuess === true) {
+            var answer =
+                "<h1>" + "Correct, Mozart wrote the Magic Flute" + "</h1>" + "<br/>" +
+                "<img src='assets/images/mozart.jpg'/>"
+
+            $('#display').html(answer);
+        } else
+            //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
+            if (userGuess === false) {
+                var answer =
+                    "<h1 class='wrong'>" + "Wrong, Mozart wrote the Magic Flute" + "</h1>" + "<br/>" +
+                    "<img src='assets/images/mozart.jpg'/>"
+
+                $('#display').html(answer);
+            }
+
+
+
+
+        if ((game.aTime === 0) && (unansweredB === true)) {
             unanswered++;
             console.log("unanswered");
             game.stop();
             game.timeReset();
             counter = setInterval(game.Q3, 1000);
-        }
+        } else
 
 
-        if ((game.aTime === 0)&&(userGuess===true)) {
+        if ((game.aTime === 0) && (userGuess === true)) {
             correct++;
             console.log("correct");
             game.stop();
             game.timeReset();
             counter = setInterval(game.Q3, 1000);
-        }
+        } else
 
-         if ((game.aTime === 0)&&(userGuess===false)) {
+        if ((game.aTime === 0) && (userGuess === false)) {
             incorrect++;
             console.log("incorrect");
             game.stop();
@@ -256,8 +270,11 @@ var game = {
             counter = setInterval(game.Q3, 1000);
         }
 
-        
+
     },
+
+
+
 
     Q3: function() {
         //this decrements game.time by 1 every second
@@ -290,8 +307,11 @@ var game = {
         //if the timer hits 0, the stop function is called, and answer 1 is called every second.
         if (game.time === 0) {
             game.stop();
-            unansweredB=true;
+            userGuess;
+            unansweredB = true;
             counter = setInterval(game.answer3, 1000);
+        } else {
+            unansweredB = false;
         }
 
 
@@ -311,22 +331,6 @@ var game = {
         //if the user guesses the correct answer display the word "correct" and a picture of the composer.
         // if (userGuess === correct) {
         game.aTime--;
-        //if the user guesses the correct answer display the word "correct" and a picture of the composer.
-        if (userGuess === true) {
-            var answer =
-                "<h1>" + "Correct, Beethoven wrote the Moonlight Sonata" + "</h1>" + "<br/>" +
-                "<img src='assets/images/beethoven.jpg'/>"
-
-            $('#display').html(answer);
-        }
-        //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
-        if (userGuess === false) {
-            var answer =
-                "<h1 class='wrong'>" + "Wrong, Beethoven wrote the Moonlight Sonata" + "</h1>" + "<br/>" +
-                "<img src='assets/images/beethoven.jpg'/>"
-
-            $('#display').html(answer);
-        }
 
         if (unansweredB === true) {
             var answer =
@@ -334,34 +338,56 @@ var game = {
                 "<img src='assets/images/beethoven.jpg'/>"
 
             $('#display').html(answer);
-        }
+        } else
+            //if the user guesses the correct answer display the word "correct" and a picture of the composer.
+            if (userGuess === true) {
+                var answer =
+                    "<h1>" + "Correct, Beethoven wrote the Moonlight Sonata" + "</h1>" + "<br/>" +
+                    "<img src='assets/images/beethoven.jpg'/>"
+
+                $('#display').html(answer);
+
+            } else
+                //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
+                if (userGuess === false) {
+                    var answer =
+                        "<h1 class='wrong'>" + "Wrong, Beethoven wrote the Moonlight Sonata" + "</h1>" + "<br/>" +
+                        "<img src='assets/images/beethoven.jpg'/>"
+
+                    $('#display').html(answer);
+                }
 
 
-        if ((game.aTime === 0)&&(unansweredB===true)&&(userGuess!==true)&&(userGuess!==false)) {
+
+
+
+
+        if ((game.aTime === 0) && (unansweredB === true)) {
             unanswered++;
             console.log("unanswered");
             game.stop();
             game.timeReset();
             counter = setInterval(game.Q4, 1000);
-        }
+        } else
 
-        
-         if ((game.aTime === 0)&&(userGuess===true)) {
+
+        if ((game.aTime === 0) && (userGuess === true)) {
             correct++;
             console.log("correct");
             game.stop();
             game.timeReset();
             counter = setInterval(game.Q4, 1000);
-        }
 
-         if ((game.aTime === 0)&&(userGuess===false)) {
+        } else
+
+        if ((game.aTime === 0) && (userGuess === false)) {
             incorrect++;
             console.log("incorrect");
             game.stop();
             game.timeReset();
             counter = setInterval(game.Q4, 1000);
-        }
 
+        }
 
     },
 
@@ -376,7 +402,7 @@ var game = {
         });
 
         $('#display').on("click", "#b", function() {
-            userGuess =false;
+            userGuess = false;
             game.stop();
             counter = setInterval(game.answer4, 1000);
         });
@@ -396,8 +422,11 @@ var game = {
         //if the timer hits 0, the stop function is called, and answer 1 is called every second.
         if (game.time === 0) {
             game.stop();
-            unansweredB=true;
+            userGuess;
+            unansweredB = true;
             counter = setInterval(game.answer4, 1000);
+        } else {
+            unansweredB = false;
         }
 
 
@@ -417,22 +446,6 @@ var game = {
         //if the user guesses the correct answer display the word "correct" and a picture of the composer.
         // if (userGuess === correct) {
         game.aTime--;
-        //if the user guesses the correct answer display the word "correct" and a picture of the composer.
-        if (userGuess === true) {
-            var answer =
-                "<h1>" + "Correct, Bach wrote the Goldberg Variations" + "</h1>" + "<br/>" +
-                "<img src='assets/images/bach.jpg'/>"
-
-            $('#display').html(answer);
-        }
-        //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
-        if (userGuess === false) {
-            var answer =
-                "<h1 class='wrong'>" + "Wrong, Bach wrote the Goldberg Variations" + "</h1>" + "<br/>" +
-                "<img src='assets/images/bach.jpg'/>"
-
-            $('#display').html(answer);
-        }
 
         if (unansweredB === true) {
             var answer =
@@ -440,35 +453,56 @@ var game = {
                 "<img src='assets/images/bach.jpg'/>"
 
             $('#display').html(answer);
-        }
+        } else
+            //if the user guesses the correct answer display the word "correct" and a picture of the composer.
+            if (userGuess === true) {
+                var answer =
+                    "<h1>" + "Correct, Bach wrote the Goldberg Variations" + "</h1>" + "<br/>" +
+                    "<img src='assets/images/bach.jpg'/>"
 
-        if ((game.aTime === 0)&&(unansweredB===true)&&(userGuess!==true)&&(userGuess!==false)) {
+                $('#display').html(answer);
+
+            } else
+                //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
+                if (userGuess === false) {
+                    var answer =
+                        "<h1 class='wrong'>" + "Wrong, Bach wrote the Goldberg Variations" + "</h1>" + "<br/>" +
+                        "<img src='assets/images/bach.jpg'/>"
+
+                    $('#display').html(answer);
+                }
+
+
+
+        if ((game.aTime === 0) && (unansweredB === true)) {
             unanswered++;
             console.log("unanswered");
             game.stop();
             game.timeReset();
             counter = setInterval(game.Q5, 1000);
-        }
+        } else
 
-       
-         if ((game.aTime === 0)&&(userGuess===true)) {
+
+        if ((game.aTime === 0) && (userGuess === true)) {
             correct++;
             console.log("correct");
             game.stop();
             game.timeReset();
             counter = setInterval(game.Q5, 1000);
-        }
 
-         if ((game.aTime === 0)&&(userGuess===false)) {
+        } else
+
+        if ((game.aTime === 0) && (userGuess === false)) {
             incorrect++;
             console.log("incorrect");
             game.stop();
             game.timeReset();
             counter = setInterval(game.Q5, 1000);
+
         }
 
-
     },
+
 
     Q5: function() {
         //this decrements game.time by 1 every second
@@ -501,8 +535,11 @@ var game = {
         //if the timer hits 0, the stop function is called, and answer 1 is called every second.
         if (game.time === 0) {
             game.stop();
-            unansweredB=true;
+            userGuess;
+            unansweredB = true;
             counter = setInterval(game.answer5, 1000);
+        } else {
+            unansweredB = false;
         }
 
 
@@ -522,22 +559,6 @@ var game = {
         //if the user guesses the correct answer display the word "correct" and a picture of the composer.
         // if (userGuess === correct) {
         game.aTime--;
-        //if the user guesses the correct answer display the word "correct" and a picture of the composer.
-        if (userGuess === true) {
-            var answer =
-                "<h1>" + "Correct, Brahms wrote the German Requiem" + "</h1>" + "<br/>" +
-                "<img src='assets/images/brahms.jpg'/>"
-
-            $('#display').html(answer);
-        }
-        //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
-        if (userGuess === false) {
-            var answer =
-                "<h1 class='wrong'>" + "Wrong, Brahms wrote the German Requiem" + "</h1>" + "<br/>" +
-                "<img src='assets/images/brahms.jpg'/>"
-
-            $('#display').html(answer);
-        }
 
         if (unansweredB === true) {
             var answer =
@@ -545,25 +566,46 @@ var game = {
                 "<img src='assets/images/brahms.jpg'/>"
 
             $('#display').html(answer);
-        }
 
-        if ((game.aTime === 0)&&(unansweredB===true)&&(userGuess!==true)&&(userGuess!==false)) {
+        } else
+            //if the user guesses the correct answer display the word "correct" and a picture of the composer.
+            if (userGuess === true) {
+                var answer =
+                    "<h1>" + "Correct, Brahms wrote the German Requiem" + "</h1>" + "<br/>" +
+                    "<img src='assets/images/brahms.jpg'/>"
+
+                $('#display').html(answer);
+
+            } else
+                //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
+                if (userGuess === false) {
+                    var answer =
+                        "<h1 class='wrong'>" + "Wrong, Brahms wrote the German Requiem" + "</h1>" + "<br/>" +
+                        "<img src='assets/images/brahms.jpg'/>"
+
+                    $('#display').html(answer);
+                }
+
+
+
+        if ((game.aTime === 0) && (unansweredB === true)) {
             unanswered++;
             console.log("unanswered");
             game.stop();
             game.timeReset();
             game.result();
-        }
-        
-         if ((game.aTime === 0)&&(userGuess===true)) {
+        } else
+
+        if ((game.aTime === 0) && (userGuess === true)) {
             correct++;
             console.log("correct");
             game.stop();
             game.timeReset();
             game.result();
-        }
 
-         if ((game.aTime === 0)&&(userGuess===false)) {
+        } else
+
+        if ((game.aTime === 0) && (userGuess === false)) {
             incorrect++;
             console.log("incorrect");
             game.stop();
@@ -599,9 +641,12 @@ var game = {
 
         $('#display').html(end);
 
-        $('#display').on("click", '#resetGame', function(){
-            
+        $('#display').on("click", '#resetGame', function() {
+
             counter = setInterval(game.Q1, 1000);
+            correct=0;
+            incorrect=0;
+            unanswered=0;
         });
     },
 
@@ -616,10 +661,14 @@ var game = {
         game.aTime = 10;
     },
 
-   
+    bReset: function() {
+        var unansweredB = false;
+    }
+
+
     //this function resets the game.
-    
-    
+
+
 }
 
 
