@@ -643,7 +643,7 @@ var game = {
 
         $('#display').on("click", '#resetGame', function() {
 
-            counter = setInterval(game.Q1, 1000);
+            game.start();
             correct=0;
             incorrect=0;
             unanswered=0;
