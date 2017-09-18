@@ -4,6 +4,30 @@
 	padding:0px;
 }
 
+body{
+	background-image: url("../images/piano.jpg");
+	background-size:100%;
+}
+
+.cImage{
+	height:300px;
+	width:270px;
+	margin:75px auto;
+	margin-left:36%;
+	border-radius: 10%;
+	border:red solid 2px;
+}
+
+#gTitle{
+		text-align:center;
+		color:red;
+		background-color:black;
+		padding-bottom:40px;
+		padding-top:40px;
+		font-size: 60px;
+
+}
+
 #display{
 	max-width:960px;
 	height:1000px;
@@ -12,91 +36,145 @@
 	-webkit-box-orient:vertical;
 	-webkit-box-flex:1;	
 	border:black 2px solid;
-	
+	background-image: url("../images/music.jpg");
 }
 
 #play {
+		display:inline-block;
+		text-align:center;
+		margin-top:30px;
+		border:black 2px solid;
+		width:100px;
+		border-radius: 10px;
+		margin-left:42%;
+		margin-top:100px;
 		background-color:red;
-	   font-size: 20px;
-	   text-align:center;
-	   padding-left:30px;
-	   padding-right:30px;
-	   padding-bottom:10px;
-	   border-radius: 10px;
-	   margin-left:44%;
-	   margin-top:10%;
-
+		color:black;
+		font-size:50px;
+		padding-right:30px;
+		padding-left:30px;
+		padding-bottom:10px;
 		}
 
 
 .question{
 		text-align:center;
-		margin-top:150px;
+		color:red;
+		background-color:black; 
+		padding-bottom:40px;
+		padding-top:40px;
 }
 
 #a{
 		display:inline-block;
 		text-align:center;
-		margin-top:30px;
+		margin-top: 100px;
 		border:black 2px solid;
 		width:100px;
 		border-radius: 10px;
 		margin-left:70px;
 		margin-right:60px;
+		background-color:red;
+		color:black;
+		font-size: 20px;
+		
 }
 
 #b{
 		display:inline-block;
 		text-align:center;
-		margin-top:30px;
+		margin-top:100px;
 		border:black 2px solid;
 		width:100px;
 		border-radius: 10px;
 		margin-left:70px;
 		margin-right:60px;
+		background-color:red;
+		color:black;
+		font-size: 20px;
+		
 }
 
 #c{
 		display:inline-block;
 		text-align:center;
-		margin-top:30px;
+		margin-top:100px;
 		border:black 2px solid;
 		width:100px;
 		border-radius: 10px;
 		margin-left:70px;
 		margin-right:60px;
+		background-color:red;
+		color:black;
+		font-size: 20px;
+	
 }
 
 #d{
 		display:inline-block;
 		text-align:center;
-		margin-top:30px;
+		margin-top:100px;
 		border:black 2px solid;
 		width:100px;
 		border-radius: 10px;
 		margin-left:70px;
 		margin-right:60px;
-
+		background-color:red;
+		color:black;
+		font-size: 20px;
+		
 }
 
 .clock{
 		text-align:center;
 		margin-top:50px;
+		color:red;
+		font-size: 100px;
 
 }
 
-.wrong{
+.answer{
 	text-align:center;
+	color:red;
+	background-color: black;
+	padding-bottom:40px;
+	padding-top:40px;
 }
 
 #resetGame{
 		display:inline-block;
 		text-align:center;
-		margin-top:30px;
+		margin-top:60px;
 		border:black 2px solid;
-		width:100px;
+		width:250px;
 		border-radius: 10px;
-		margin-left:70px;
-		margin-right:60px;
+		margin-left:33%;
+		margin-top:100px;
+		background-color:red;
+		color:black;
+		font-size:50px;
+		padding-right:30px;
+		padding-left:30px;
+		padding-bottom:10px;
+
+}
+
+#correct{
+	text-align:center;
+	color:red;
+	background-color: black
+}
+
+#incorrect{
+	text-align:center;
+	color:red;
+	background-color: black
+
+}
+
+#unanswered{
+	text-align:center;
+	color:red;
+	background-color: black
 
 }

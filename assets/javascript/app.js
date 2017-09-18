@@ -1,13 +1,15 @@
 //onload function displays a play button, which calls question 1 from the game object
 window.onload = function() {
-    $('#display').html('<span id="play">play</span>')
+    $('#display').html(
+        '<h1 id="gTitle">Classical Music Trivia</h1>'+
+        '<span id="play">play</span>')
     $('#play').click(game.start);
 
 }
 
+//global variables
 //the variable clockRunning is a flag that will prevent the clock from being sped up unnecessarily
 var clockRunning = false;
-//global variables
 var counter;
 var correct = 0;
 var incorrect = 0;
@@ -19,10 +21,12 @@ var c;
 var d;
 var userGuess;
 var unansweredB = false;
-
-
-
-
+var Mplay=false;
+var audio1= new Audio("assets/music/rite.mp3");
+var audio2= new Audio("assets/music/magic.mp3");
+var audio3= new Audio("assets/music/moonlight.mp3");
+var audio4= new Audio("assets/music/goldberg.mp3");
+var audio5= new Audio("assets/music/lullaby.mp3");
 
 //this is the game object, which controls the timer as well as the trivia questions.
 var game = {
@@ -47,29 +51,34 @@ var game = {
     Q1: function() {
         //this decrements game.time by 1 every second
         game.time--;
+        audio1.play();
 
         $('#display').on("click", "#a", function() {
             game.stop();
             userGuess = true;
             counter = setInterval(game.answer1, 1000);
+            audio1.pause();
         });
 
         $('#display').on("click", "#b", function() {
             game.stop();
             userGuess = false;
             counter = setInterval(game.answer1, 1000);
+            audio1.pause();
         });
 
         $('#display').on("click", "#c", function() {
             game.stop();
             userGuess = false;
             counter = setInterval(game.answer1, 1000);
+            audio1.pause();
         });
 
         $('#display').on("click", "#d", function() {
             game.stop();
             userGuess = false;
             counter = setInterval(game.answer1, 1000);
+            audio1.pause();
         });
 
         //if the timer hits 0, the stop function is called, and answer 1 is called every second.
@@ -78,6 +87,7 @@ var game = {
             userGuess;
             unansweredB = true;
             counter = setInterval(game.answer1, 1000);
+            audio1.pause();
         } else {
             unansweredB = false;
         }
@@ -105,8 +115,8 @@ var game = {
 
         if (unansweredB === true) {
             var answer =
-                "<h1 class='wrong'>" + "Igor Stravinsky wrote the Rite of Spring" + "</h1>" + "<br/>" +
-                "<img src='assets/images/stravinsky.jpg'/>"
+                "<h1 class='answer'>" + "Igor Stravinsky wrote the Rite of Spring" + "</h1>" + "<br/>" +
+                "<img src='assets/images/stravinsky.jpg' class='cImage'/>"
 
             $('#display').html(answer);
         } else
@@ -114,16 +124,16 @@ var game = {
             //if the user guesses the correct answer display the word "correct" and a picture of the composer.
             if (userGuess === true) {
                 var answer =
-                    "<h1>" + "Correct, Igor Stravinsky wrote the Rite of Spring" + "</h1>" + "<br/>" +
-                    "<img src='assets/images/stravinsky.jpg'/>"
+                    "<h1 class='answer'>" + "Correct, Igor Stravinsky wrote the Rite of Spring" + "</h1>" + "<br/>" +
+                    "<img src='assets/images/stravinsky.jpg' class='cImage'/>"
 
                 $('#display').html(answer);
             } else
                 //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
                 if (userGuess === false) {
                     var answer =
-                        "<h1 class='wrong'>" + "Wrong, Igor Stravinsky wrote the Rite of Spring" + "</h1>" + "<br/>" +
-                        "<img src='assets/images/stravinsky.jpg'/>"
+                        "<h1 class='answer'>" + "Wrong, Igor Stravinsky wrote the Rite of Spring" + "</h1>" + "<br/>" +
+                        "<img src='assets/images/stravinsky.jpg' class='cImage'/>"
 
                     $('#display').html(answer);
                 }
@@ -163,29 +173,34 @@ var game = {
     Q2: function() {
         //this decrements game.time by 1 every second
         game.time--;
+        audio2.play();
 
         $('#display').on("click", "#a", function() {
             game.stop();
             userGuess = false;
             counter = setInterval(game.answer2, 1000);
+            audio2.pause();
         });
 
         $('#display').on("click", "#b", function() {
             game.stop();
             userGuess = false;
             counter = setInterval(game.answer2, 1000);
+            audio2.pause();
         });
 
         $('#display').on("click", "#c", function() {
             game.stop();
             userGuess = true;
             counter = setInterval(game.answer2, 1000);
+            audio2.pause();
         });
 
         $('#display').on("click", "#d", function() {
             game.stop();
             userGuess = false;
             counter = setInterval(game.answer2, 1000);
+            audio2.pause();
         });
 
         //if the timer hits 0, the stop function is called, and answer 1 is called every second.
@@ -194,6 +209,7 @@ var game = {
             userGuess;
             unansweredB = true;
             counter = setInterval(game.answer2, 1000);
+            audio2.pause();
         } else {
             unansweredB = false;
         }
@@ -220,24 +236,24 @@ var game = {
 
         if (unansweredB === true) {
             var answer =
-                "<h1 class='wrong'>" + "Mozart wrote the Magic Flute" + "</h1>" + "<br/>" +
-                "<img src='assets/images/mozart.jpg'/>"
+                "<h1 class='answer'>" + "Mozart wrote the Magic Flute" + "</h1>" + "<br/>" +
+                "<img src='assets/images/mozart.jpg' class='cImage'/>"
 
             $('#display').html(answer);
         } else
 
         if (userGuess === true) {
             var answer =
-                "<h1>" + "Correct, Mozart wrote the Magic Flute" + "</h1>" + "<br/>" +
-                "<img src='assets/images/mozart.jpg'/>"
+                "<h1 class='answer'>" + "Correct, Mozart wrote the Magic Flute" + "</h1>" + "<br/>" +
+                "<img src='assets/images/mozart.jpg' class='cImage'/>"
 
             $('#display').html(answer);
         } else
             //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
             if (userGuess === false) {
                 var answer =
-                    "<h1 class='wrong'>" + "Wrong, Mozart wrote the Magic Flute" + "</h1>" + "<br/>" +
-                    "<img src='assets/images/mozart.jpg'/>"
+                    "<h1 class='answer'>" + "Wrong, Mozart wrote the Magic Flute" + "</h1>" + "<br/>" +
+                    "<img src='assets/images/mozart.jpg' class='cImage'/>"
 
                 $('#display').html(answer);
             }
@@ -279,29 +295,34 @@ var game = {
     Q3: function() {
         //this decrements game.time by 1 every second
         game.time--;
+        audio3.play();
 
         $('#display').on("click", "#a", function() {
             game.stop();
             userGuess = false;
             counter = setInterval(game.answer3, 1000);
+            audio3.pause();
         });
 
         $('#display').on("click", "#b", function() {
             game.stop();
             userGuess = true;
             counter = setInterval(game.answer3, 1000);
+            audio3.pause();
         });
 
         $('#display').on("click", "#c", function() {
             game.stop();
             userGuess = false;
             counter = setInterval(game.answer3, 1000);
+            audio3.pause();
         });
 
         $('#display').on("click", "#d", function() {
             game.stop();
             userGuess = false;
             counter = setInterval(game.answer3, 1000);
+            audio3.pause();
         });
 
         //if the timer hits 0, the stop function is called, and answer 1 is called every second.
@@ -310,6 +331,7 @@ var game = {
             userGuess;
             unansweredB = true;
             counter = setInterval(game.answer3, 1000);
+            audio3.pause();
         } else {
             unansweredB = false;
         }
@@ -334,16 +356,16 @@ var game = {
 
         if (unansweredB === true) {
             var answer =
-                "<h1 class='wrong'>" + "Beethoven wrote the Moonlight Sonata" + "</h1>" + "<br/>" +
-                "<img src='assets/images/beethoven.jpg'/>"
+                "<h1 class='answer'>" + "Beethoven wrote the Moonlight Sonata" + "</h1>" + "<br/>" +
+                "<img src='assets/images/beethoven.jpg' class='cImage'/>"
 
             $('#display').html(answer);
         } else
             //if the user guesses the correct answer display the word "correct" and a picture of the composer.
             if (userGuess === true) {
                 var answer =
-                    "<h1>" + "Correct, Beethoven wrote the Moonlight Sonata" + "</h1>" + "<br/>" +
-                    "<img src='assets/images/beethoven.jpg'/>"
+                    "<h1 class='answer'>" + "Correct, Beethoven wrote the Moonlight Sonata" + "</h1>" + "<br/>" +
+                    "<img src='assets/images/beethoven.jpg' class='cImage'/>"
 
                 $('#display').html(answer);
 
@@ -351,8 +373,8 @@ var game = {
                 //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
                 if (userGuess === false) {
                     var answer =
-                        "<h1 class='wrong'>" + "Wrong, Beethoven wrote the Moonlight Sonata" + "</h1>" + "<br/>" +
-                        "<img src='assets/images/beethoven.jpg'/>"
+                        "<h1 class='answer'>" + "Wrong, Beethoven wrote the Moonlight Sonata" + "</h1>" + "<br/>" +
+                        "<img src='assets/images/beethoven.jpg' class='cImage'/>"
 
                     $('#display').html(answer);
                 }
@@ -394,29 +416,34 @@ var game = {
     Q4: function() {
         //this decrements game.time by 1 every second
         game.time--;
+        audio4.play();
 
         $('#display').on("click", "#a", function() {
             userGuess = false;
             game.stop();
             counter = setInterval(game.answer4, 1000);
+            audio4.pause();
         });
 
         $('#display').on("click", "#b", function() {
             userGuess = false;
             game.stop();
             counter = setInterval(game.answer4, 1000);
+            audio4.pause();
         });
 
         $('#display').on("click", "#c", function() {
             userGuess = false;
             game.stop();
             counter = setInterval(game.answer4, 1000);
+            audio4.pause();
         });
 
         $('#display').on("click", "#d", function() {
             userGuess = true;
             game.stop();
             counter = setInterval(game.answer4, 1000);
+            audio4.pause();
         });
 
         //if the timer hits 0, the stop function is called, and answer 1 is called every second.
@@ -425,6 +452,7 @@ var game = {
             userGuess;
             unansweredB = true;
             counter = setInterval(game.answer4, 1000);
+            audio4.pause();
         } else {
             unansweredB = false;
         }
@@ -449,16 +477,16 @@ var game = {
 
         if (unansweredB === true) {
             var answer =
-                "<h1 class='wrong'>" + "Bach wrote the Goldberg Variations" + "</h1>" + "<br/>" +
-                "<img src='assets/images/bach.jpg'/>"
+                "<h1 class='answer'>" + "Bach wrote the Goldberg Variations" + "</h1>" + "<br/>" +
+                "<img src='assets/images/bach.jpg' class='cImage'/>"
 
             $('#display').html(answer);
         } else
             //if the user guesses the correct answer display the word "correct" and a picture of the composer.
             if (userGuess === true) {
                 var answer =
-                    "<h1>" + "Correct, Bach wrote the Goldberg Variations" + "</h1>" + "<br/>" +
-                    "<img src='assets/images/bach.jpg'/>"
+                    "<h1 class='answer' >" + "Correct, Bach wrote the Goldberg Variations" + "</h1>" + "<br/>" +
+                    "<img src='assets/images/bach.jpg' class='cImage'/>"
 
                 $('#display').html(answer);
 
@@ -466,8 +494,8 @@ var game = {
                 //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
                 if (userGuess === false) {
                     var answer =
-                        "<h1 class='wrong'>" + "Wrong, Bach wrote the Goldberg Variations" + "</h1>" + "<br/>" +
-                        "<img src='assets/images/bach.jpg'/>"
+                        "<h1 class='answer'>" + "Wrong, Bach wrote the Goldberg Variations" + "</h1>" + "<br/>" +
+                        "<img src='assets/images/bach.jpg' class='cImage'/>"
 
                     $('#display').html(answer);
                 }
@@ -507,29 +535,34 @@ var game = {
     Q5: function() {
         //this decrements game.time by 1 every second
         game.time--;
+        audio5.play();
 
         $('#display').on("click", "#a", function() {
             userGuess = false;
             game.stop();
             counter = setInterval(game.answer5, 1000);
+            audio5.pause();
         });
 
         $('#display').on("click", "#b", function() {
             userGuess = false;
             game.stop();
             counter = setInterval(game.answer5, 1000);
+            audio5.pause();
         });
 
         $('#display').on("click", "#c", function() {
             userGuess = true;
             game.stop();
             counter = setInterval(game.answer5, 1000);
+            audio5.pause();
         });
 
         $('#display').on("click", "#d", function() {
             userGuess = false;
             game.stop();
             counter = setInterval(game.answer5, 1000);
+            audio5.pause();
         });
 
         //if the timer hits 0, the stop function is called, and answer 1 is called every second.
@@ -538,13 +571,14 @@ var game = {
             userGuess;
             unansweredB = true;
             counter = setInterval(game.answer5, 1000);
+            audio5.pause();
         } else {
             unansweredB = false;
         }
 
 
         //this is printing out on the user interface. 
-        question = "Who wrote the German Requiem?"
+        question = "Who wrote the German Wiegenlied: Guten Abend, gute Nacht?"
         a = "Handel";
         b = "Beethoven";
         c = "Brahms";
@@ -562,8 +596,8 @@ var game = {
 
         if (unansweredB === true) {
             var answer =
-                "<h1 class='wrong'>" + "Brahms wrote the German Requiem" + "</h1>" + "<br/>" +
-                "<img src='assets/images/brahms.jpg'/>"
+                "<h1 class='answer'>" + "Brahms wrote the Wiegenlied: Guten Abend, gute Nacht" + "</h1>" + "<br/>" +
+                "<img src='assets/images/brahms.jpg' class='cImage'/>"
 
             $('#display').html(answer);
 
@@ -571,8 +605,8 @@ var game = {
             //if the user guesses the correct answer display the word "correct" and a picture of the composer.
             if (userGuess === true) {
                 var answer =
-                    "<h1>" + "Correct, Brahms wrote the German Requiem" + "</h1>" + "<br/>" +
-                    "<img src='assets/images/brahms.jpg'/>"
+                    "<h1 class='answer'>" + "Correct, Brahms wrote Wiegenlied: Guten Abend, gute Nacht" + "</h1>" + "<br/>" +
+                    "<img src='assets/images/brahms.jpg' class='cImage'/>"
 
                 $('#display').html(answer);
 
@@ -580,8 +614,8 @@ var game = {
                 //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
                 if (userGuess === false) {
                     var answer =
-                        "<h1 class='wrong'>" + "Wrong, Brahms wrote the German Requiem" + "</h1>" + "<br/>" +
-                        "<img src='assets/images/brahms.jpg'/>"
+                        "<h1 class='answer'>" + "Wrong, Brahms wrote Wiegenlied: Guten Abend, gute Nacht" + "</h1>" + "<br/>" +
+                        "<img src='assets/images/brahms.jpg' class='cImage'/>"
 
                     $('#display').html(answer);
                 }
@@ -634,9 +668,9 @@ var game = {
     //this function displays the user's results when the game is over and gives them the option to play again.
     result: function() {
         var end =
-            "<h1>" + "Correct:" + correct + "</h1>" +
-            "<h1>" + "Incorrect:" + incorrect + "</h1>" +
-            "<h1>" + "Unaswered:" + unanswered + "</h1>" +
+            "<h1 id='correct'>" + "Correct:" + correct + "</h1>" +
+            "<h1 id='incorrect'>" + "Incorrect:" + incorrect + "</h1>" +
+            "<h1 id='unanswered'>" + "Unaswered:" + unanswered + "</h1>" +
             "<div id='resetGame'>" + "Play Again" + "</div>"
 
         $('#display').html(end);
@@ -647,6 +681,12 @@ var game = {
             correct=0;
             incorrect=0;
             unanswered=0;
+            audio1.currentTime=0;
+            audio2.currentTime=0;
+            audio3.currentTime=0;
+            audio4.currentTime=0;
+            audio5.currentTime=0;
+
         });
     },
 
