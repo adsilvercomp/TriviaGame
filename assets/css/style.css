@@ -46,7 +46,7 @@ body{
 		border:black 2px solid;
 		width:100px;
 		border-radius: 10px;
-		margin-left:42%;
+		margin-left:41%;
 		margin-top:100px;
 		background-color:red;
 		color:black;
@@ -177,4 +177,47 @@ body{
 	color:red;
 	background-color: black
 
+}
+
+@media screen and (max-width: 500px){
+	#a{
+		margin-left:35%;
+		display:inline-block;
+	}
+
+	#b{
+		margin-left:35%;
+		display:inline-block;
+	}
+
+	#c{
+		margin-left:35%;
+		display:inline-block;
+	}
+
+	#d{
+		margin-left:35%;
+		display:inline-block;
+	}
+
+	.clock{
+		margin-left:35%;
+		display:inline-block;
+
+	}
+	.cImage{
+		margin-left:20%;
+		display:inline-block;
+	}
+
+	#play{
+		margin-left:31%;
+	}
+
+	#resetGame{
+		margin-left:12%;
+	}
+
+
+	
 }
