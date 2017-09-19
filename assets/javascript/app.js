@@ -7,7 +7,8 @@ window.onload = function() {
 
 }
 
-//global variables
+//****global variables
+
 //the variable clockRunning is a flag that will prevent the clock from being sped up unnecessarily
 var clockRunning = false;
 //the counter will be declared as a setInterval that will be used to call functions every second for a period of time.
@@ -33,7 +34,13 @@ var audio3 = new Audio("assets/music/moonlight.mp3");
 var audio4 = new Audio("assets/music/goldberg.mp3");
 var audio5 = new Audio("assets/music/lullaby.mp3");
 
-//this is the game object, which controls the timer, the trivia questions and the results.
+
+
+
+
+//******this is the game object, which controls the timer, the trivia questions and the results.
+
+
 var game = {
     //players will have 20 seconds to answer the question
     time: 20,
@@ -53,7 +60,7 @@ var game = {
 
 
     //this function subtracts game.time by one (20 times) every time it is called and displays the current game.time in the UI.
-    //it also asks the first multiple choice question and links the question, asnwers/non-answer and timer to the user Interface.
+    //it also plays audio1, asks the first multiple choice question, and links the question, asnwers/non-answer and timer to the results.
     //it then calls answer1 every second.
     Q1: function() {
         //this decrements game.time by 1 every second
@@ -123,7 +130,7 @@ var game = {
 
         //this decrements game.aTime by 1 every second
         game.aTime--;
-       
+
         //if the user does not answer the question, give the correct answer/ picture of the composer.
         if (unansweredB === true) {
             var answer =
@@ -152,7 +159,7 @@ var game = {
 
 
 
-
+        //the results record when aTime===0, so that they are not called multiple times for each answer.
         if ((game.aTime === 0) && (unansweredB === true)) {
             unanswered++;
             console.log("unanswered");
@@ -183,14 +190,24 @@ var game = {
 
 
 
+
+
+
+
+
+
+
     //this function subtracts game.time by one (20 times) every time it is called and displays the current game.time in the UI.
-    //it also asks the second multiple choice question and links the question, asnwers and timer to the user Interface.
+    //it also plays audio2, asks the second multiple choice question, and links the question, asnwers/non-answer and timer to the results.
     //it then calls answer2 every second.
     Q2: function() {
         //this decrements game.time by 1 every second
         game.time--;
         audio2.play();
 
+
+        //when the question is answered, the userGuess is either recorded as true or false, the music stops,
+        //the stop function is called, and answer 2 is called every second.
         $('#display').on("click", "#a", function() {
             game.stop();
             userGuess = false;
@@ -219,7 +236,8 @@ var game = {
             audio2.pause();
         });
 
-        //if the timer hits 0, the stop function is called, and answer 1 is called every second.
+        //if the timer hits 0, the audio is stopped, unansweredB is set to true,
+        //the stop function is called, and answer 2 is called every second.
         if (game.time === 0) {
             game.stop();
             userGuess;
@@ -231,7 +249,7 @@ var game = {
         }
 
 
-        //this is printing out on the user interface. 
+        //this is printing out in the user interface. 
         question = "Who wrote the Magic Flute?"
         a = "Haydn";
         b = "Bach";
@@ -244,13 +262,11 @@ var game = {
 
     answer2: function() {
 
-
-        //if the user guesses the correct answer display the word "correct" and a picture of the composer.
-        // if (userGuess === correct) {
+        //game.aTime is subtracted by one every time it is called.
         game.aTime--;
-        
-        //if the user guesses the correct answer display the word "correct" and a picture of the composer.
 
+
+        //if the user does not answer the question, give the correct answer/ picture of the composer.
         if (unansweredB === true) {
             var answer =
                 "<h1 class='answer'>" + "Mozart wrote the Magic Flute" + "</h1>" + "<br/>" +
@@ -259,25 +275,26 @@ var game = {
             $('#display').html(answer);
         } else
 
-        if (userGuess === true) {
-            var answer =
-                "<h1 class='answer'>" + "Correct, Mozart wrote the Magic Flute" + "</h1>" + "<br/>" +
-                "<img src='assets/images/mozart.jpg' class='cImage'/>"
-
-            $('#display').html(answer);
-        } else
-            //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
-            if (userGuess === false) {
+            //if the user guesses the correct answer display the word "correct" and a picture of the composer.
+            if (userGuess === true) {
                 var answer =
-                    "<h1 class='answer'>" + "Wrong, Mozart wrote the Magic Flute" + "</h1>" + "<br/>" +
+                    "<h1 class='answer'>" + "Correct, Mozart wrote the Magic Flute" + "</h1>" + "<br/>" +
                     "<img src='assets/images/mozart.jpg' class='cImage'/>"
 
                 $('#display').html(answer);
-            }
+            } else
+                //if the user guesses the incorrect answer, display the word incorrect and a picture of the correct composer. 
+                if (userGuess === false) {
+                    var answer =
+                        "<h1 class='answer'>" + "Wrong, Mozart wrote the Magic Flute" + "</h1>" + "<br/>" +
+                        "<img src='assets/images/mozart.jpg' class='cImage'/>"
+
+                    $('#display').html(answer);
+                }
 
 
 
-
+        //the results record when aTime===0, so that they are not called multiple times for each answer.
         if ((game.aTime === 0) && (unansweredB === true)) {
             unanswered++;
             console.log("unanswered");
@@ -309,11 +326,24 @@ var game = {
 
 
 
+
+
+
+
+
+
+    //this function subtracts game.time by one (20 times) every time it is called and displays the current game.time in the UI.
+    //it also plays audio3, asks the third multiple choice question, and links the question, asnwers/non-answer and timer to the results.
+    //it then calls answer2 every second.
+
     Q3: function() {
         //this decrements game.time by 1 every second
         game.time--;
         audio3.play();
 
+
+        //when the question is answered, the userGuess is either recorded as true or false, the music stops,
+        //the stop function is called, and answer 3 is called every second.
         $('#display').on("click", "#a", function() {
             game.stop();
             userGuess = false;
@@ -342,7 +372,8 @@ var game = {
             audio3.pause();
         });
 
-        //if the timer hits 0, the stop function is called, and answer 1 is called every second.
+        //if the timer hits 0, the audio is stopped, unansweredB is set to true,
+        //the stop function is called, and answer 3 is called every second.
         if (game.time === 0) {
             game.stop();
             userGuess;
@@ -367,11 +398,10 @@ var game = {
 
     answer3: function() {
 
-        //if the user guesses the correct answer display the word "correct" and a picture of the composer.
-        // if (userGuess === correct) {
+        //game.aTime is subtracted by one every time it is called. 
         game.aTime--;
-       
 
+        //if the user does not answer the question, give the correct answer/ picture of the composer.
         if (unansweredB === true) {
             var answer =
                 "<h1 class='answer'>" + "Beethoven wrote the Moonlight Sonata" + "</h1>" + "<br/>" +
@@ -401,7 +431,7 @@ var game = {
 
 
 
-
+        //the results record when aTime===0, so that they are not called multiple times for each answer.
         if ((game.aTime === 0) && (unansweredB === true)) {
             unanswered++;
             console.log("unanswered");
@@ -431,10 +461,23 @@ var game = {
 
     },
 
+
+
+
+
+
+
+    //this function subtracts game.time by one (20 times) every time it is called and displays the current game.time in the UI.
+    //it also plays audio4, asks the fourth multiple choice question, and links the question, asnwers/non-answer and timer to the results.
+    //it then calls answer4 every second.
+
     Q4: function() {
         //this decrements game.time by 1 every second
         game.time--;
         audio4.play();
+
+        //when the question is answered, the userGuess is either recorded as true or false, the music stops,
+        //the stop function is called, and answer 3 is called every second.
 
         $('#display').on("click", "#a", function() {
             userGuess = false;
@@ -464,7 +507,8 @@ var game = {
             audio4.pause();
         });
 
-        //if the timer hits 0, the stop function is called, and answer 1 is called every second.
+        //if the timer hits 0, the audio is stopped, unansweredB is set to true,
+        //the stop function is called, and answer 4 is called every second.
         if (game.time === 0) {
             game.stop();
             userGuess;
@@ -489,10 +533,10 @@ var game = {
 
     answer4: function() {
 
-        //if the user guesses the correct answer display the word "correct" and a picture of the composer.
-        // if (userGuess === correct) {
+        //game.aTime is subtracted by one every time it is called. 
         game.aTime--;
 
+        //if the user does not answer the question, give the correct answer/ picture of the composer.
         if (unansweredB === true) {
             var answer =
                 "<h1 class='answer'>" + "Bach wrote the Goldberg Variations" + "</h1>" + "<br/>" +
@@ -519,7 +563,7 @@ var game = {
                 }
 
 
-
+        //the results record when aTime===0, so that they are not called multiple times for each answer.
         if ((game.aTime === 0) && (unansweredB === true)) {
             unanswered++;
             console.log("unanswered");
@@ -550,11 +594,22 @@ var game = {
     },
 
 
+
+
+
+
+
+    //this function subtracts game.time by one (20 times) every time it is called and displays the current game.time in the UI.
+    //it also plays audio5, asks the fifth multiple choice question, and links the question, asnwers/non-answer and timer to the results.
+    //it then calls answer5 every second.
+
     Q5: function() {
         //this decrements game.time by 1 every second
         game.time--;
         audio5.play();
 
+        //when the question is answered, the userGuess is either recorded as true or false, the music stops,
+        //the stop function is called, and answer 3 is called every second.
         $('#display').on("click", "#a", function() {
             userGuess = false;
             game.stop();
@@ -583,7 +638,8 @@ var game = {
             audio5.pause();
         });
 
-        //if the timer hits 0, the stop function is called, and answer 1 is called every second.
+        //if the timer hits 0, the audio is stopped, unansweredB is set to true,
+        //the stop function is called, and answer 5 is called every second.
         if (game.time === 0) {
             game.stop();
             userGuess;
@@ -608,10 +664,10 @@ var game = {
 
     answer5: function() {
 
-        //if the user guesses the correct answer display the word "correct" and a picture of the composer.
-        // if (userGuess === correct) {
+        //game.aTime is subtracted by one every time it is called. 
         game.aTime--;
 
+        //if the user does not answer the question, give the correct answer/ picture of the composer.
         if (unansweredB === true) {
             var answer =
                 "<h1 class='answer'>" + "Brahms wrote Wiegenlied: Guten Abend, gute Nacht" + "</h1>" + "<br/>" +
@@ -639,7 +695,7 @@ var game = {
                 }
 
 
-
+        //the results record when aTime===0, so that they are not called multiple times for each answer.
         if ((game.aTime === 0) && (unansweredB === true)) {
             unanswered++;
             console.log("unanswered");
@@ -668,6 +724,15 @@ var game = {
     },
 
 
+
+
+
+
+
+
+
+
+
     //this function is the userInterface that displays when the user is answering questions.
     interface: function() {
 
@@ -693,6 +758,9 @@ var game = {
 
         $('#display').html(end);
 
+
+        //when the user hits the button that says play again, the result menu is reset, 
+        //and the audio files are started set to start from the beginning.
         $('#display').on("click", '#resetGame', function() {
 
             game.start();
@@ -708,23 +776,19 @@ var game = {
         });
     },
 
+    //this function stops the timer and sets the clockRunning flag to false.
     stop: function() {
         clearInterval(counter);
         clockRunning = false;
     },
 
-
+    //this function resets the two timers.
     timeReset: function() {
         game.time = 20;
         game.aTime = 3;
     },
 
-    bReset: function() {
-        var unansweredB = false;
-    }
 
-
-    //this function resets the game.
 
 
 }
