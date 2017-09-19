@@ -1,7 +1,7 @@
 //onload function displays a play button, which calls question 1 from the game object
 window.onload = function() {
     $('#display').html(
-        '<h1 id="gTitle">Classical Music Trivia</h1>'+
+        '<h1 id="gTitle">Classical Music Trivia</h1>' +
         '<span id="play">play</span>')
     $('#play').click(game.start);
 
@@ -21,17 +21,17 @@ var c;
 var d;
 var userGuess;
 var unansweredB = false;
-var Mplay=false;
-var audio1= new Audio("assets/music/rite.mp3");
-var audio2= new Audio("assets/music/magic.mp3");
-var audio3= new Audio("assets/music/moonlight.mp3");
-var audio4= new Audio("assets/music/goldberg.mp3");
-var audio5= new Audio("assets/music/lullaby.mp3");
+var Mplay = false;
+var audio1 = new Audio("assets/music/rite.mp3");
+var audio2 = new Audio("assets/music/magic.mp3");
+var audio3 = new Audio("assets/music/moonlight.mp3");
+var audio4 = new Audio("assets/music/goldberg.mp3");
+var audio5 = new Audio("assets/music/lullaby.mp3");
 
 //this is the game object, which controls the timer as well as the trivia questions.
 var game = {
     time: 20,
-    aTime: 5,
+    aTime: 3,
 
     //this function calls the function Q1 every second.
     start: function() {
@@ -678,14 +678,14 @@ var game = {
         $('#display').on("click", '#resetGame', function() {
 
             game.start();
-            correct=0;
-            incorrect=0;
-            unanswered=0;
-            audio1.currentTime=0;
-            audio2.currentTime=0;
-            audio3.currentTime=0;
-            audio4.currentTime=0;
-            audio5.currentTime=0;
+            correct = 0;
+            incorrect = 0;
+            unanswered = 0;
+            audio1.currentTime = 0;
+            audio2.currentTime = 0;
+            audio3.currentTime = 0;
+            audio4.currentTime = 0;
+            audio5.currentTime = 0;
 
         });
     },
