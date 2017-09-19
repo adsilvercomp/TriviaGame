@@ -10,7 +10,10 @@ window.onload = function() {
 //global variables
 //the variable clockRunning is a flag that will prevent the clock from being sped up unnecessarily
 var clockRunning = false;
+//the counter will be declared as a setInterval that will be used to call functions every second for a period of time.
 var counter;
+//correct, incorrect and unanswered will be updated every time a user answers or skips a question. At the end of the game it 
+//will be displayed on the results menu.
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
@@ -21,19 +24,23 @@ var c;
 var d;
 var userGuess;
 var unansweredB = false;
+//the Mplay variable is a flag that will prevent music from playing when false.  
 var Mplay = false;
+//these audio files will play in conjunction with the questions they are associated with.
 var audio1 = new Audio("assets/music/rite.mp3");
 var audio2 = new Audio("assets/music/magic.mp3");
 var audio3 = new Audio("assets/music/moonlight.mp3");
 var audio4 = new Audio("assets/music/goldberg.mp3");
 var audio5 = new Audio("assets/music/lullaby.mp3");
 
-//this is the game object, which controls the timer as well as the trivia questions.
+//this is the game object, which controls the timer, the trivia questions and the results.
 var game = {
+    //players will have 20 seconds to answer the question
     time: 20,
+    //the answer screen will display for 3 seconds
     aTime: 3,
 
-    //this function calls the function Q1 every second.
+    //this function starts the clock by switching the clock running flag to true and calls the Q1 function every second.
     start: function() {
         if (!clockRunning) {
             clockRunning = true;
@@ -46,12 +53,15 @@ var game = {
 
 
     //this function subtracts game.time by one (20 times) every time it is called and displays the current game.time in the UI.
-    //it also asks the first multiple choice question and links the question, asnwers and timer to the user Interface.
+    //it also asks the first multiple choice question and links the question, asnwers/non-answer and timer to the user Interface.
     //it then calls answer1 every second.
     Q1: function() {
         //this decrements game.time by 1 every second
         game.time--;
         audio1.play();
+
+        //when the question is answered, the userGuess is either recorded as true or false, the music stops,
+        //the stop function is called, and answer 1 is called every second.
 
         $('#display').on("click", "#a", function() {
             game.stop();
@@ -81,7 +91,8 @@ var game = {
             audio1.pause();
         });
 
-        //if the timer hits 0, the stop function is called, and answer 1 is called every second.
+        //if the timer hits 0, the audio is stopped, unansweredB is set to true,
+        //the stop function is called, and answer 1 is called every second.
         if (game.time === 0) {
             game.stop();
             userGuess;
@@ -94,7 +105,7 @@ var game = {
 
 
 
-        //this is printing out on the user interface. 
+        //this is printing out in the user interface. 
         question = "Who wrote the Rite of Spring?"
         a = "Stravinsky";
         b = "Bach";
@@ -113,7 +124,7 @@ var game = {
         //this decrements game.aTime by 1 every second
         game.aTime--;
        
-
+        //if the user does not answer the question, give the correct answer/ picture of the composer.
         if (unansweredB === true) {
             var answer =
                 "<h1 class='answer'>" + "Igor Stravinsky wrote the Rite of Spring" + "</h1>" + "<br/>" +
@@ -171,6 +182,10 @@ var game = {
     },
 
 
+
+    //this function subtracts game.time by one (20 times) every time it is called and displays the current game.time in the UI.
+    //it also asks the second multiple choice question and links the question, asnwers and timer to the user Interface.
+    //it then calls answer2 every second.
     Q2: function() {
         //this decrements game.time by 1 every second
         game.time--;
