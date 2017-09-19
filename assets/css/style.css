@@ -4,6 +4,11 @@
 	padding:0px;
 }
 
+h1{
+	font-size: 60px;
+	font-weight:bold;
+}
+
 body{
 	background-image: url("../images/piano.jpg");
 	background-size:100%;
@@ -54,6 +59,7 @@ body{
 		padding-right:30px;
 		padding-left:30px;
 		padding-bottom:10px;
+		cursor:pointer;
 		}
 
 
@@ -77,6 +83,7 @@ body{
 		background-color:red;
 		color:black;
 		font-size: 20px;
+		cursor:pointer;
 		
 }
 
@@ -92,6 +99,7 @@ body{
 		background-color:red;
 		color:black;
 		font-size: 20px;
+		cursor:pointer;
 		
 }
 
@@ -107,6 +115,7 @@ body{
 		background-color:red;
 		color:black;
 		font-size: 20px;
+		cursor: pointer;
 	
 }
 
@@ -122,7 +131,13 @@ body{
 		background-color:red;
 		color:black;
 		font-size: 20px;
+		cursor:pointer;
 		
+}
+
+#a:hover, #b:hover, #c:hover, #d:hover, #play:hover, #resetGame:hover{
+	background-color:black;
+	color:red;
 }
 
 .clock{
@@ -156,7 +171,7 @@ body{
 		padding-right:30px;
 		padding-left:30px;
 		padding-bottom:10px;
-
+		cursor:pointer;
 }
 
 #correct{
@@ -206,7 +221,7 @@ body{
 
 	}
 	.cImage{
-		margin-left:20%;
+		margin-left:17%;
 		display:inline-block;
 	}
 
