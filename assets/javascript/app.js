@@ -112,6 +112,7 @@ var game = {
 
         //this decrements game.aTime by 1 every second
         game.aTime--;
+       
 
         if (unansweredB === true) {
             var answer =
@@ -232,6 +233,7 @@ var game = {
         //if the user guesses the correct answer display the word "correct" and a picture of the composer.
         // if (userGuess === correct) {
         game.aTime--;
+        
         //if the user guesses the correct answer display the word "correct" and a picture of the composer.
 
         if (unansweredB === true) {
@@ -353,6 +355,7 @@ var game = {
         //if the user guesses the correct answer display the word "correct" and a picture of the composer.
         // if (userGuess === correct) {
         game.aTime--;
+       
 
         if (unansweredB === true) {
             var answer =
@@ -596,7 +599,7 @@ var game = {
 
         if (unansweredB === true) {
             var answer =
-                "<h1 class='answer'>" + "Brahms wrote the Wiegenlied: Guten Abend, gute Nacht" + "</h1>" + "<br/>" +
+                "<h1 class='answer'>" + "Brahms wrote Wiegenlied: Guten Abend, gute Nacht" + "</h1>" + "<br/>" +
                 "<img src='assets/images/brahms.jpg' class='cImage'/>"
 
             $('#display').html(answer);
@@ -698,7 +701,7 @@ var game = {
 
     timeReset: function() {
         game.time = 20;
-        game.aTime = 10;
+        game.aTime = 3;
     },
 
     bReset: function() {
